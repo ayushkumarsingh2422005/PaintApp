@@ -8,174 +8,202 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/50b80e1ce7.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Chelsea+Market&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Chelsea+Market&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
-*{
-    box-sizing:border-box;
-}
-body {
-    margin:0;
-    padding:0;
-}
-canvas{
-    position:fixed;
-    top:0;
-    left:0;
-    background-color:none;
-}
+        * {
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: none;
+        }
 
 
 
-#mycont1, #mycont2, #mycont3{
-    position:fixed;
-    bottom:10px;
-    right:10px;
-    height:40px;
-    width:40px;
-    border-radius:5000pc;
-    transition-duration:0.5s;
-    background-color:white;
-}
-#mycont1{
-    display:flex;
-    align-items:center;
-    justify-content: center;
-    font-size:2pc;
-    transform-origin:50% 50%;
-    background-color:white;
-    box-shadow:0 0 5px;
-}
-#mycont2{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content: flex-start;
-    padding:5px;
-    font-size:1.2pc;
-    overflow:hidden;
-    gap:5px;
-    box-shadow:1px 1px 2px gray;
-}
-#mycont3{
-    display:flex;
-    align-items:center;
-    justify-content: flex-start;
-    padding:5px;
-    font-size:1.2pc;
-    overflow:hidden;
-    gap:5px;
-    box-shadow: -1px 1px 2px gray;
-}
-#mycont3 > i{
-    height:100%;
-    background-color:#f6f6f6;
-    width:30px;
-    display:flex;
-    align-items:center;
-    justify-content: center;
-    border-radius:50%;
-}
-#mycont2 > i{
-    height:30px;
-    background-color:#f6f6f6;
-    width:100%;
-    display:flex;
-    align-items:center;
-    justify-content: center;
-    border-radius:50%;
-}
-#color{
-    height:70%;
-    width:70%;
-    border-radius:50%;
-    border:solid black;
-    border-width:2px;
-    background-color:lime;
-}
-#popup1{
-    position:fixed;
-    top:25vh;
-    left:15vw;
-    height:auto;
-    width:70vw;
-    background-color:white;
-    padding:15px;
-    border-radius:10px;
-    box-shadow:1px 1px 4px gray;
-    font-family: 'Chelsea Market', cursive;
-    display:none;
-}
-label{
-    margin-bottom:5px !important;
-    font-size:1.2pc;
-}
-#btn1, #btn2{
-    float:right;
-    font-size:0.9pc;
-}
-#popup2{
-    position:fixed;
-    top:25vh;
-    left:15vw;
-    height:auto;
-    width:70vw;
-    background-color:white;
-    padding:15px;
-    border-radius:10px;
-    box-shadow:1px 1px 4px gray;
-    font-family: 'Chelsea Market', cursive;
-    display:none;
-}
-#popup2 > div > input{
-    border-style:none;
-    outline:none;
-}
-#popup2 > div{
-    display:flex;
-    align-items:center;
-    background-color:none;
-    margin-bottom:20px;
-}
-#popup2 > div > span{
-    width:100%;
-}
-#insert, #remove, #correct{
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    height: 20px;
-    width: 20px;
-    background-color: skyblue;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    font-size: 20px;
-    display: none;
-}
-#remove{
-    left: 35px;
-    background-color: red;
-}
-#correct{
-    left: 60px;
-    background-color: lime;
-}
-.temp_dot{
-    position: fixed;
-    height: 20px;
-    width: 20px;
-    background-color: red;
-    border-radius: 50%;
-    top:calc(50vh - 10px);
-    left:calc(50vw - 10px);
-    border-style:solid;
-}
+        #mycont1,
+        #mycont2,
+        #mycont3 {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            height: 40px;
+            width: 40px;
+            border-radius: 5000pc;
+            transition-duration: 0.5s;
+            background-color: white;
+        }
+
+        #mycont1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2pc;
+            transform-origin: 50% 50%;
+            background-color: white;
+            box-shadow: 0 0 5px;
+        }
+
+        #mycont2 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 5px;
+            font-size: 1.2pc;
+            overflow: hidden;
+            gap: 5px;
+            box-shadow: 1px 1px 2px gray;
+        }
+
+        #mycont3 {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 5px;
+            font-size: 1.2pc;
+            overflow: hidden;
+            gap: 5px;
+            box-shadow: -1px 1px 2px gray;
+        }
+
+        #mycont3>i {
+            height: 100%;
+            background-color: #f6f6f6;
+            width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        #mycont2>i {
+            height: 30px;
+            background-color: #f6f6f6;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        #color {
+            height: 70%;
+            width: 70%;
+            border-radius: 50%;
+            border: solid black;
+            border-width: 2px;
+            background-color: lime;
+        }
+
+        #popup1 {
+            position: fixed;
+            top: 25vh;
+            left: 15vw;
+            height: auto;
+            width: 70vw;
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 1px 1px 4px gray;
+            font-family: 'Chelsea Market', cursive;
+            display: none;
+        }
+
+        label {
+            margin-bottom: 5px !important;
+            font-size: 1.2pc;
+        }
+
+        #btn1,
+        #btn2 {
+            float: right;
+            font-size: 0.9pc;
+        }
+
+        #popup2 {
+            position: fixed;
+            top: 25vh;
+            left: 15vw;
+            height: auto;
+            width: 70vw;
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 1px 1px 4px gray;
+            font-family: 'Chelsea Market', cursive;
+            display: none;
+        }
+
+        #popup2>div>input {
+            border-style: none;
+            outline: none;
+        }
+
+        #popup2>div {
+            display: flex;
+            align-items: center;
+            background-color: none;
+            margin-bottom: 20px;
+        }
+
+        #popup2>div>span {
+            width: 100%;
+        }
+
+        #insert,
+        #remove,
+        #correct {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            height: 20px;
+            width: 20px;
+            background-color: skyblue;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 20px;
+            display: none;
+        }
+
+        #remove {
+            left: 35px;
+            background-color: red;
+        }
+
+        #correct {
+            left: 60px;
+            background-color: lime;
+        }
+
+        .temp_dot {
+            position: fixed;
+            height: 20px;
+            width: 20px;
+            background-color: red;
+            border-radius: 50%;
+            top: calc(50vh - 10px);
+            left: calc(50vw - 10px);
+            border-style: solid;
+        }
     </style>
 </head>
 
@@ -241,10 +269,10 @@ label{
     <div id="correct">
         ✓
     </div>
-    
+
     <script>
-window.addEventListener("load",function(){
-    alert(`
+        window.addEventListener("load", function () {
+            alert(`
 𝐖𝐡𝐚𝐭'𝐬 𝐍𝐞𝐰
 
 This App comes with lot of implements. The major implementation is that it now supports the drawing of polygons.
@@ -276,401 +304,462 @@ Instagram : https://www.instagram.com/invites/contact/?i=1rfyn624dkdn6&utm_conte
 
 Previous Version : https://code.sololearn.com/W213X0T56Cj9/?ref=app
     `);
-    const hex_code = () => {
-        return "hsla(" + ~~(360 * Math.random()) + "," +
-                "70%," +
-                "80%,1)";
-    };
-    /*--------------declaring variables-----------------*/
-    var x_init = null;
-    var y_init = null;
-    var x_mid = null;
-    var y_mid = null;
-    var x_end = null;
-    var y_end = null;
-    var fill_color = null;
-    var stroke_color = null;
-    var radi = null;
-    var eraser_width = 30;
-    var choice = 0;
-    var shadow_col = "red";
-    var shadow_width = 50;
-    const canvas_or = document.querySelector("#canvas_or");
-    const canvas_ly = document.querySelector("#canvas_ly");
-    const orignal = canvas_or.getContext("2d");
-    const layer = canvas_ly.getContext("2d");
-    
-    
-    /*------declaring height and width of canvas-------*/
-    canvas_or.width = canvas_ly.width = window.innerWidth;
-    canvas_or.height = canvas_ly.height = window.innerHeight;
-    
-    orignal.fillStyle = "lime";
-    orignal.lineWidth = 2;
-    orignal.lineJoin = "round";
-    orignal.lineCap = "round";
-    
-    /*------declaring cover fill and stroke color------*/
-    layer.fillStyle = "rgba(255,255,255,1)";
-    layer.strokeStyle = "rgba(255,0,0,1)";
-    
-    canvas_ly.addEventListener("touchstart",function(event){
-        x_init = event.touches[0].clientX;
-        y_init = event.touches[0].clientY;
-        layer.clearRect(0,0,canvas_ly.width,canvas_ly.height);
-        layer.beginPath();
-        orignal.beginPath();
-        touchstart();
-    });
-    canvas_ly.addEventListener("touchmove",function(event){
-        x_mid = event.touches[0].clientX;
-        y_mid = event.touches[0].clientY;
-        touchmove();
-    });
-    canvas_ly.addEventListener("touchend",function(event){
-        x_end = event.changedTouches[0].pageX;
-        y_end = event.changedTouches[0].pageY;
-        touchend();
-    });
-    
-    
-    
-    function touchstart(){
-        if(choice == 0){
-            orignal.beginPath();
-            orignal.arc(x_init,y_init,0,0,Math.PI*2);
-        }
-        else{
-            return;
-        }
-    }
-    function touchmove(){
-        if(choice == 0){
-            orignal.arc(x_mid,y_mid,0,0,Math.PI*2);
-            orignal.stroke();
-        }
-        else if(choice == 2){
-            layer.clearRect(0,0,canvas_ly.width,canvas_ly.height);
-            layer.beginPath();
-            layer.fillRect(x_mid- (eraser_width/2),y_mid-(eraser_width/2),eraser_width,eraser_width);
-            layer.strokeRect(x_mid- (eraser_width/2),y_mid-(eraser_width/2),eraser_width,eraser_width);
-            orignal.clearRect(x_mid- (eraser_width/2),y_mid-(eraser_width/2),eraser_width,eraser_width);
-        }
-        else if(choice == 3){
-            layer.clearRect(0,0,canvas_ly.width,canvas_ly.height);
-            layer.beginPath();
-            layer.moveTo(x_init,y_init);
-            layer.lineTo(x_mid,y_mid);
-            layer.stroke();
-            layer.beginPath();
-            layer.arc((x_init + x_mid)/2,(y_init + y_mid)/2,2,0,Math.PI*2);
-            layer.stroke();
-        }
-        else if(choice == 4){
-            layer.clearRect(0,0,canvas_ly.width,canvas_ly.height);
-            layer.beginPath();
-        layer.strokeRect(x_init,y_init,x_mid-x_init,y_mid-y_init);
-            let x_mid_ = (x_init + x_mid)/2
-            let y_mid_ = (y_init + y_mid)/2
-            layer.beginPath();
-            layer.moveTo(x_mid_,y_init);
-            layer.lineTo(x_mid_,y_mid);
-            layer.moveTo(x_init,y_mid_);
-            layer.lineTo(x_mid,y_mid_);
-            layer.stroke();
-        }
-        else if(choice == 6){
-            orignal.lineTo(x_mid,y_mid);
-            orignal.fill();
-            //orignal.stroke();
-        }
-        else if(choice == 7){
-            return;
-        }
-        else{
-            layer.clearRect(0,0,canvas_ly.width,canvas_ly.height);
-            layer.beginPath();
-            radi = Math.pow((Math.pow((y_mid - y_init),2) + Math.pow((x_mid - x_init),2)),1/2)
-            layer.arc(x_init,y_init,radi,0,Math.PI*2);
-            layer.moveTo(x_init,y_init);
-            layer.arc(x_init,y_init,2,0,Math.PI*2);
-            layer.moveTo(x_init,y_init);
-            layer.lineTo(x_mid,y_mid);
-            layer.stroke();
-        }
-    }
-    function touchend(){
-        if(choice == 0){
-            orignal.arc(x_end,y_end,0,0,Math.PI*2);
-        }
-        else if(choice == 6){
-            orignal.lineTo(x_end,y_end);
-            orignal.closePath();
-        }
-        else if(choice == 3){
-            layer.clearRect(0,0,canvas_ly.width,canvas_ly.height);
-            orignal.moveTo(x_init,y_init);
-            orignal.lineTo(x_end,y_end);
-            orignal.stroke();
-        }
-        else if(choice == 4){
-             layer.clearRect(0,0,canvas_ly.width,canvas_ly.height);
-            orignal.fillRect(x_init,y_init,x_end-x_init,y_end-y_init);
-            orignal.strokeRect(x_init,y_init,x_end-x_init,y_end-y_init);
-        }
-        else if(choice == 5){
-            layer.clearRect(0,0,canvas_ly.width,canvas_ly.height);
-            orignal.arc(x_init,y_init,radi,0,Math.PI*2);
-            orignal.fill();
-            orignal.stroke();
-        }
-        else{
-            return;
-        }
-    }
+            const hex_code = () => {
+                return "hsla(" + ~~(360 * Math.random()) + "," +
+                    "70%," +
+                    "80%,1)";
+            };
+            /*--------------declaring variables-----------------*/
+            var x_init = null;
+            var y_init = null;
+            var x_mid = null;
+            var y_mid = null;
+            var x_end = null;
+            var y_end = null;
+            var fill_color = null;
+            var stroke_color = null;
+            var radi = null;
+            var eraser_width = 30;
+            var choice = 0;
+            var shadow_col = "red";
+            var shadow_width = 50;
+            let isDrawing = false;
+            const canvas_or = document.querySelector("#canvas_or");
+            const canvas_ly = document.querySelector("#canvas_ly");
+            const orignal = canvas_or.getContext("2d");
+            const layer = canvas_ly.getContext("2d");
 
-    
-    
-    var counter0 = 0;
-    $("#mycont1").click(function(){
-        if (counter0 == 0){
-            $(this).css("transform","rotate(45deg)");
-            $("#mycont2").css("height","330px");
-            $("#mycont3").css("width","154px")
-            counter0 = 1;
-        }
-        else {
-            $(this).css("transform","rotate(0deg)");
-            $("#mycont2").css("height","40px");
-            $("#mycont3").css("width","40px");
-            counter0 = 0;
-        }
-    });
-    
-    $(".tool").click(function(){
-        if($(this).index() != 1){
-            choice = $(this).index();
-            //$(".tool").css("background-color","#f6f6f6");
-            $(".tool:nth-child(1)").css("background-color","#f6f6f6");
-            $(".tool:nth-child(3)").css("background-color","#f6f6f6");
-            $(".tool:nth-child(4)").css("background-color","#f6f6f6");
-            $(".tool:nth-child(5)").css("background-color","#f6f6f6");
-            $(".tool:nth-child(6)").css("background-color","#f6f6f6");
-            $(".tool:nth-child(7)").css("background-color","#f6f6f6");
-            $(".tool:nth-child(8)").css("background-color","#f6f6f6");
-            $('#insert').css('display', 'none');
-            $('#remove').css('display', 'none');
-            $('#correct').css('display', 'none');
-            $('.temp_dot').remove();
-            lst = [];
-            $(".tool:nth-child("+($(this).index()+1)+")").css("background-color","red");
-        }
-    });
-    
-    $(".fa-sliders-h").click(function(){
-        $("#popup1").css("display","block");
-        $("#popup2").css("display","none");
-        $(this).css("background-color","red");
-        $("#color_cont").css("background-color","#f6f6f6");
-    });
-    $("#btn1").click(function(){
-        $("#popup1").css("display","none");
-        $(".fa-sliders-h").css("background-color","#f6f6f6");
-        $("#color_cont").css("background-color","#f6f6f6");
-        $("#popup2").css("display","none")
-    });
-    
-    $("#color_cont").click(function(){
-        $("#popup1").css("display","none");
-        $("#popup2").css("display","block");
-        $(this).css("background-color","red");
-        $(".fa-sliders-h").css("background-color","#f6f6f6");
-    });
-    $("#btn2").click(function(){
-        $("#popup1").css("display","none");
-        $(".fa-sliders-h").css("background-color","#f6f6f6");
-        $("#color_cont").css("background-color","#f6f6f6");
-        $("#popup2").css("display","none");
-    });
-    $(".eraserwidth").on("input",function(){
-        eraser_width = $(this).val();
-        //console.log(eraser_width);
-        if(choice == 2){
-            layer.clearRect(0,0,canvas_ly.width,canvas_ly.height);
-            layer.beginPath();
-            layer.strokeRect(x_mid- (eraser_width/2),y_mid-(eraser_width/2),eraser_width,eraser_width);
-            layer.fillRect(x_mid- (eraser_width/2),y_mid-(eraser_width/2),eraser_width,eraser_width);
-        }
-    });
-    $(".strokewidth").on("input",function(){
-        orignal.lineWidth = $(this).val();
-    });
-    
-    $("#stroke_col").on("input",function(){
-        orignal.strokeStyle = $(this).val();
-        $("#color").css("border-color",$(this).val());
-    });
-    $("#fill_col").on("input",function(){
-        orignal.fillStyle = $(this).val();
-        $("#color").css("background-color",$(this).val())
-    });
-    $("#back_col").on("input",function(){
-        $("body").css("background-color",$(this).val());
-    });
-    var counter1 = 0;
-    $(".fa-paint-brush").click(function(){
-        if (counter1 == 0){
-            $(this).css("background-color","red");
-            orignal.shadowColor = shadow_col;
-            orignal.shadowBlur = shadow_width;
-            counter1 = 1;
-        }
-        else {
-            $(this).css("background-color","#f6f6f6");
-            orignal.shadowColor = "rgba(255,255,255,0)";
-            orignal.shadowBlur = 0;
-            counter1 = 0;
-        }
-    });
-    
-    $(".shadowwidth").on("input",function(){
-        shadow_width = $(this).val();
-        if(counter1 == 1){
-            orignal.shadowBlur = shadow_width;
-        }
-    });
-    $("#shadow_col").on("input",function(){
-        shadow_col = $(this).val();
-        if(counter1 == 1){
-            orignal.shadowColor = shadow_col;
-        }
-    });
-    counter2 = 0;
-    $(".fa-ellipsis-hv").click(function(){
-        if (counter2 == 0){
-            $(this).css("background-color","orange");
-            counter2 = 1;
-            orignal.setLineDash([1, 5])
-        }
-        else if(counter2 == 1){
-            $(this).css("background-color","red");
-            counter2 = 2;
-            orignal.setLineDash([10, 20])
-        }
-        else{
-            $(this).css("background-color","#f6f6f6")
-            counter2 = 0;
-            orignal.setLineDash([0])
-        }
-    });
-    
-    
-    $('.fa-draw-polygon').click(function() {
-        $('#insert').css('display', 'flex');
-        $('#remove').css('display', 'flex');
-        $('#correct').css('display', 'flex');
-    })
-    $('#correct').click(function(){
-        if (lst.length > 1 && lst.length < 3) {
-            let temp1 = lst[0].split(' ');
-            let temp2 = lst[1].split(' ');
-            //orignal.clearRect(0, 0, canvas_ly.width, canvas_ly.height);
-            orignal.beginPath();
-            orignal.moveTo(temp1[0], temp1[1]);
-            orignal.lineTo(temp2[0], temp2[1]);
-            orignal.stroke();
-            orignal.fill();
-            //console.log(temp_ele_index)
-            orignal.closePath();
-        }
-        else if (lst.length >= 3) {
-            let temp1 = lst[0].split(' ');
-            let temp2 = lst[lst.length - 1].split(' ');
-            //orignal.clearRect(0, 0, canvas_ly.width, canvas_ly.height);
-            orignal.beginPath();
-            orignal.moveTo(temp1[0], temp1[1]);
-        
-            for (var i = 0; i <= (lst.length - 2); i++) {
-                let temp = lst[i + 1].split(' ');
-                orignal.lineTo(temp[0], temp[1]);
-            }
-            orignal.lineTo(temp2[0], temp2[1]);
-            orignal.closePath();
-            orignal.stroke();
-            orignal.fill();
-        }
-    });
-    
-    
-    var temp_ele_index;
-    var x;
-    var y;
-    var lst = [];
-    
-    $('#insert').click(function() {
-        $('body').append('<div class="temp_dot" style="background-color:'+hex_code()+'"></div>');
-        
-        lst.push(`$(canvas_or.width/2) $(canvas_or.height/2)`);
-        poly();
-        $('.temp_dot').on('touchstart', temp_fun1);
-        function temp_fun1(arg) {
-            temp_ele_index = $(this).index() - 1;
-            poly();
-            //console.log(temp_ele_index);
-            
-        }
-        $('.temp_dot').on('touchmove', temp_fun2);
-        function temp_fun2(pos) {
-            //console.log(pos)
-            x = event.touches[0].clientX - 10;
-            y = event.touches[0].clientY - 10;
-            //pos.stopPropagation();
-            $(this).css({
-                'top': y + 'px',
-                'left': x + 'px'
+
+            /*------declaring height and width of canvas-------*/
+            canvas_or.width = canvas_ly.width = window.innerWidth;
+            canvas_or.height = canvas_ly.height = window.innerHeight;
+
+            orignal.fillStyle = "lime";
+            orignal.lineWidth = 2;
+            orignal.lineJoin = "round";
+            orignal.lineCap = "round";
+
+            /*------declaring cover fill and stroke color------*/
+            layer.fillStyle = "rgba(255,255,255,1)";
+            layer.strokeStyle = "rgba(255,0,0,1)";
+
+            // For touch events (mobile devices)
+            canvas_ly.addEventListener("touchstart", function (event) {
+                x_init = event.touches[0].clientX;
+                y_init = event.touches[0].clientY;
+                isDrawing = true;
+                layer.clearRect(0, 0, canvas_ly.width, canvas_ly.height);
+                layer.beginPath();
+                orignal.beginPath();
+                touchstart();
             });
-            lst[temp_ele_index] = (x+10)+' '+(y+10);
-            poly();
-            //console.log(x)
-        }
-    });
-    
-    $('#remove').click(function() {
-        $('.temp_dot:last-child').remove();
-        lst.pop();
-    });
-    
-    function poly(){
-        
-        if(lst.length > 1 && lst.length < 3){
-            let temp1 = lst[0].split(' ');
-            let temp2 = lst[1].split(' ');
-            layer.clearRect(0, 0, canvas_ly.width, canvas_ly.height);
-            layer.beginPath();
-            layer.moveTo(temp1[0], temp1[1]);
-            layer.lineTo(temp2[0], temp2[1]);
-            layer.stroke();
-            //console.log(temp_ele_index)
-            layer.closePath();
-        }
-        else if(lst.length >= 3){
-            let temp1 = lst[0].split(' ');
-            let temp2 = lst[lst.length - 1].split(' ');
-            layer.clearRect(0, 0, canvas_ly.width, canvas_ly.height);
-            layer.beginPath();
-            layer.moveTo(temp1[0], temp1[1]);
-            
-            for(var i = 0; i <= (lst.length - 2); i++){
-                let temp = lst[i+1].split(' ');
-                layer.lineTo(temp[0], temp[1]);
+
+            canvas_ly.addEventListener("touchmove", function (event) {
+                if (isDrawing) {
+                    x_mid = event.touches[0].clientX;
+                    y_mid = event.touches[0].clientY;
+                    touchmove();
+                }
+            });
+
+            canvas_ly.addEventListener("touchend", function (event) {
+                isDrawing = false;
+                x_end = event.changedTouches[0].pageX;
+                y_end = event.changedTouches[0].pageY;
+                touchend();
+            });
+
+            // For mouse events (desktop devices)
+            canvas_ly.addEventListener("mousedown", function (event) {
+                if (event.button === 0) { // Left mouse button
+                    x_init = event.clientX;
+                    y_init = event.clientY;
+                    isDrawing = true;
+                    layer.clearRect(0, 0, canvas_ly.width, canvas_ly.height);
+                    layer.beginPath();
+                    orignal.beginPath();
+                    touchstart(); // Reuse the touchstart function
+                }
+            });
+
+            canvas_ly.addEventListener("mousemove", function (event) {
+                if (isDrawing) {
+                    x_mid = event.clientX;
+                    y_mid = event.clientY;
+                    touchmove(); // Reuse the touchmove function
+                }
+            });
+
+            canvas_ly.addEventListener("mouseup", function (event) {
+                if (event.button === 0) { // Left mouse button
+                    isDrawing = false;
+                    x_end = event.clientX;
+                    y_end = event.clientY;
+                    touchend(); // Reuse the touchend function
+                }
+            });
+
+
+
+
+            function touchstart() {
+                if (choice == 0) {
+                    orignal.beginPath();
+                    orignal.arc(x_init, y_init, 0, 0, Math.PI * 2);
+                }
+                else {
+                    return;
+                }
             }
-            layer.lineTo(temp2[0], temp2[1]);
-            layer.closePath();
-            layer.stroke();
-        }
-    }
-    
-});
+            function touchmove() {
+                if (choice == 0) {
+                    orignal.arc(x_mid, y_mid, 0, 0, Math.PI * 2);
+                    orignal.stroke();
+                }
+                else if (choice == 2) {
+                    layer.clearRect(0, 0, canvas_ly.width, canvas_ly.height);
+                    layer.beginPath();
+                    layer.fillRect(x_mid - (eraser_width / 2), y_mid - (eraser_width / 2), eraser_width, eraser_width);
+                    layer.strokeRect(x_mid - (eraser_width / 2), y_mid - (eraser_width / 2), eraser_width, eraser_width);
+                    orignal.clearRect(x_mid - (eraser_width / 2), y_mid - (eraser_width / 2), eraser_width, eraser_width);
+                }
+                else if (choice == 3) {
+                    layer.clearRect(0, 0, canvas_ly.width, canvas_ly.height);
+                    layer.beginPath();
+                    layer.moveTo(x_init, y_init);
+                    layer.lineTo(x_mid, y_mid);
+                    layer.stroke();
+                    layer.beginPath();
+                    layer.arc((x_init + x_mid) / 2, (y_init + y_mid) / 2, 2, 0, Math.PI * 2);
+                    layer.stroke();
+                }
+                else if (choice == 4) {
+                    layer.clearRect(0, 0, canvas_ly.width, canvas_ly.height);
+                    layer.beginPath();
+                    layer.strokeRect(x_init, y_init, x_mid - x_init, y_mid - y_init);
+                    let x_mid_ = (x_init + x_mid) / 2
+                    let y_mid_ = (y_init + y_mid) / 2
+                    layer.beginPath();
+                    layer.moveTo(x_mid_, y_init);
+                    layer.lineTo(x_mid_, y_mid);
+                    layer.moveTo(x_init, y_mid_);
+                    layer.lineTo(x_mid, y_mid_);
+                    layer.stroke();
+                }
+                else if (choice == 6) {
+                    orignal.lineTo(x_mid, y_mid);
+                    orignal.fill();
+                    //orignal.stroke();
+                }
+                else if (choice == 7) {
+                    return;
+                }
+                else {
+                    layer.clearRect(0, 0, canvas_ly.width, canvas_ly.height);
+                    layer.beginPath();
+                    radi = Math.pow((Math.pow((y_mid - y_init), 2) + Math.pow((x_mid - x_init), 2)), 1 / 2)
+                    layer.arc(x_init, y_init, radi, 0, Math.PI * 2);
+                    layer.moveTo(x_init, y_init);
+                    layer.arc(x_init, y_init, 2, 0, Math.PI * 2);
+                    layer.moveTo(x_init, y_init);
+                    layer.lineTo(x_mid, y_mid);
+                    layer.stroke();
+                }
+            }
+            function touchend() {
+                if (choice == 0) {
+                    orignal.arc(x_end, y_end, 0, 0, Math.PI * 2);
+                }
+                else if (choice == 6) {
+                    orignal.lineTo(x_end, y_end);
+                    orignal.closePath();
+                }
+                else if (choice == 3) {
+                    layer.clearRect(0, 0, canvas_ly.width, canvas_ly.height);
+                    orignal.moveTo(x_init, y_init);
+                    orignal.lineTo(x_end, y_end);
+                    orignal.stroke();
+                }
+                else if (choice == 4) {
+                    layer.clearRect(0, 0, canvas_ly.width, canvas_ly.height);
+                    orignal.fillRect(x_init, y_init, x_end - x_init, y_end - y_init);
+                    orignal.strokeRect(x_init, y_init, x_end - x_init, y_end - y_init);
+                }
+                else if (choice == 5) {
+                    layer.clearRect(0, 0, canvas_ly.width, canvas_ly.height);
+                    orignal.arc(x_init, y_init, radi, 0, Math.PI * 2);
+                    orignal.fill();
+                    orignal.stroke();
+                }
+                else {
+                    return;
+                }
+            }
+
+
+
+            var counter0 = 0;
+            $("#mycont1").click(function () {
+                if (counter0 == 0) {
+                    $(this).css("transform", "rotate(45deg)");
+                    $("#mycont2").css("height", "330px");
+                    $("#mycont3").css("width", "154px")
+                    counter0 = 1;
+                }
+                else {
+                    $(this).css("transform", "rotate(0deg)");
+                    $("#mycont2").css("height", "40px");
+                    $("#mycont3").css("width", "40px");
+                    counter0 = 0;
+                }
+            });
+
+            $(".tool").click(function () {
+                if ($(this).index() != 1) {
+                    choice = $(this).index();
+                    //$(".tool").css("background-color","#f6f6f6");
+                    $(".tool:nth-child(1)").css("background-color", "#f6f6f6");
+                    $(".tool:nth-child(3)").css("background-color", "#f6f6f6");
+                    $(".tool:nth-child(4)").css("background-color", "#f6f6f6");
+                    $(".tool:nth-child(5)").css("background-color", "#f6f6f6");
+                    $(".tool:nth-child(6)").css("background-color", "#f6f6f6");
+                    $(".tool:nth-child(7)").css("background-color", "#f6f6f6");
+                    $(".tool:nth-child(8)").css("background-color", "#f6f6f6");
+                    $('#insert').css('display', 'none');
+                    $('#remove').css('display', 'none');
+                    $('#correct').css('display', 'none');
+                    $('.temp_dot').remove();
+                    lst = [];
+                    $(".tool:nth-child(" + ($(this).index() + 1) + ")").css("background-color", "red");
+                }
+            });
+
+            $(".fa-sliders-h").click(function () {
+                $("#popup1").css("display", "block");
+                $("#popup2").css("display", "none");
+                $(this).css("background-color", "red");
+                $("#color_cont").css("background-color", "#f6f6f6");
+            });
+            $("#btn1").click(function () {
+                $("#popup1").css("display", "none");
+                $(".fa-sliders-h").css("background-color", "#f6f6f6");
+                $("#color_cont").css("background-color", "#f6f6f6");
+                $("#popup2").css("display", "none")
+            });
+
+            $("#color_cont").click(function () {
+                $("#popup1").css("display", "none");
+                $("#popup2").css("display", "block");
+                $(this).css("background-color", "red");
+                $(".fa-sliders-h").css("background-color", "#f6f6f6");
+            });
+            $("#btn2").click(function () {
+                $("#popup1").css("display", "none");
+                $(".fa-sliders-h").css("background-color", "#f6f6f6");
+                $("#color_cont").css("background-color", "#f6f6f6");
+                $("#popup2").css("display", "none");
+            });
+            $(".eraserwidth").on("input", function () {
+                eraser_width = $(this).val();
+                //console.log(eraser_width);
+                if (choice == 2) {
+                    layer.clearRect(0, 0, canvas_ly.width, canvas_ly.height);
+                    layer.beginPath();
+                    layer.strokeRect(x_mid - (eraser_width / 2), y_mid - (eraser_width / 2), eraser_width, eraser_width);
+                    layer.fillRect(x_mid - (eraser_width / 2), y_mid - (eraser_width / 2), eraser_width, eraser_width);
+                }
+            });
+            $(".strokewidth").on("input", function () {
+                orignal.lineWidth = $(this).val();
+            });
+
+            $("#stroke_col").on("input", function () {
+                orignal.strokeStyle = $(this).val();
+                $("#color").css("border-color", $(this).val());
+            });
+            $("#fill_col").on("input", function () {
+                orignal.fillStyle = $(this).val();
+                $("#color").css("background-color", $(this).val())
+            });
+            $("#back_col").on("input", function () {
+                $("body").css("background-color", $(this).val());
+            });
+            var counter1 = 0;
+            $(".fa-paint-brush").click(function () {
+                if (counter1 == 0) {
+                    $(this).css("background-color", "red");
+                    orignal.shadowColor = shadow_col;
+                    orignal.shadowBlur = shadow_width;
+                    counter1 = 1;
+                }
+                else {
+                    $(this).css("background-color", "#f6f6f6");
+                    orignal.shadowColor = "rgba(255,255,255,0)";
+                    orignal.shadowBlur = 0;
+                    counter1 = 0;
+                }
+            });
+
+            $(".shadowwidth").on("input", function () {
+                shadow_width = $(this).val();
+                if (counter1 == 1) {
+                    orignal.shadowBlur = shadow_width;
+                }
+            });
+            $("#shadow_col").on("input", function () {
+                shadow_col = $(this).val();
+                if (counter1 == 1) {
+                    orignal.shadowColor = shadow_col;
+                }
+            });
+            counter2 = 0;
+            $(".fa-ellipsis-hv").click(function () {
+                if (counter2 == 0) {
+                    $(this).css("background-color", "orange");
+                    counter2 = 1;
+                    orignal.setLineDash([1, 5])
+                }
+                else if (counter2 == 1) {
+                    $(this).css("background-color", "red");
+                    counter2 = 2;
+                    orignal.setLineDash([10, 20])
+                }
+                else {
+                    $(this).css("background-color", "#f6f6f6")
+                    counter2 = 0;
+                    orignal.setLineDash([0])
+                }
+            });
+
+
+            $('.fa-draw-polygon').click(function () {
+                $('#insert').css('display', 'flex');
+                $('#remove').css('display', 'flex');
+                $('#correct').css('display', 'flex');
+            })
+            $('#correct').click(function () {
+                if (lst.length > 1 && lst.length < 3) {
+                    let temp1 = lst[0].split(' ');
+                    let temp2 = lst[1].split(' ');
+                    //orignal.clearRect(0, 0, canvas_ly.width, canvas_ly.height);
+                    orignal.beginPath();
+                    orignal.moveTo(temp1[0], temp1[1]);
+                    orignal.lineTo(temp2[0], temp2[1]);
+                    orignal.stroke();
+                    orignal.fill();
+                    //console.log(temp_ele_index)
+                    orignal.closePath();
+                }
+                else if (lst.length >= 3) {
+                    let temp1 = lst[0].split(' ');
+                    let temp2 = lst[lst.length - 1].split(' ');
+                    //orignal.clearRect(0, 0, canvas_ly.width, canvas_ly.height);
+                    orignal.beginPath();
+                    orignal.moveTo(temp1[0], temp1[1]);
+
+                    for (var i = 0; i <= (lst.length - 2); i++) {
+                        let temp = lst[i + 1].split(' ');
+                        orignal.lineTo(temp[0], temp[1]);
+                    }
+                    orignal.lineTo(temp2[0], temp2[1]);
+                    orignal.closePath();
+                    orignal.stroke();
+                    orignal.fill();
+                }
+            });
+
+
+            var temp_ele_index;
+            var x;
+            var y;
+            var lst = [];
+
+            $('#insert').click(function () {
+                $('body').append('<div class="temp_dot" style="background-color:' + hex_code() + '"></div>');
+
+                lst.push(`${canvas_or.width / 2} ${canvas_or.height / 2}`);
+                poly();
+
+                $('.temp_dot').each(function () {
+                    let isDragging = false;
+                    let temp_ele_index = $(this).index() - 1;
+
+                    function startDragging(event) {
+                        temp_ele_index = $(this).index() - 1;
+                        poly(); // Call poly function
+                        isDragging = true;
+                        event.preventDefault(); // Prevent default touch behavior
+                    }
+
+                    function drag(event) {
+                        if (isDragging) {
+                            let x, y;
+                            if (event.type === 'mousemove') {
+                                x = event.clientX - 10;
+                                y = event.clientY - 10;
+                            } else if (event.type === 'touchmove') {
+                                x = event.touches[0].clientX - 10;
+                                y = event.touches[0].clientY - 10;
+                            }
+                            $(this).css({
+                                'top': y + 'px',
+                                'left': x + 'px'
+                            });
+                            lst[temp_ele_index] = (x + 10) + ' ' + (y + 10);
+                            poly(); // Call poly function
+                            event.preventDefault(); // Prevent default touch behavior
+                        }
+                    }
+
+                    function endDragging(event) {
+                        isDragging = false;
+                        event.preventDefault(); // Prevent default touch behavior
+                    }
+
+                    // Bind events for each .temp_dot element
+                    $(this).on('touchstart mousedown', startDragging);
+                    $(this).on('touchmove mousemove', drag);
+                    $(this).on('touchend mouseup', endDragging);
+                });
+            });
+
+
+            $('#remove').click(function () {
+                $('.temp_dot:last-child').remove();
+                lst.pop();
+            });
+
+            function poly() {
+
+                if (lst.length > 1 && lst.length < 3) {
+                    let temp1 = lst[0].split(' ');
+                    let temp2 = lst[1].split(' ');
+                    layer.clearRect(0, 0, canvas_ly.width, canvas_ly.height);
+                    layer.beginPath();
+                    layer.moveTo(temp1[0], temp1[1]);
+                    layer.lineTo(temp2[0], temp2[1]);
+                    layer.stroke();
+                    //console.log(temp_ele_index)
+                    layer.closePath();
+                }
+                else if (lst.length >= 3) {
+                    let temp1 = lst[0].split(' ');
+                    let temp2 = lst[lst.length - 1].split(' ');
+                    layer.clearRect(0, 0, canvas_ly.width, canvas_ly.height);
+                    layer.beginPath();
+                    layer.moveTo(temp1[0], temp1[1]);
+
+                    for (var i = 0; i <= (lst.length - 2); i++) {
+                        let temp = lst[i + 1].split(' ');
+                        layer.lineTo(temp[0], temp[1]);
+                    }
+                    layer.lineTo(temp2[0], temp2[1]);
+                    layer.closePath();
+                    layer.stroke();
+                }
+            }
+
+        });
     </script>
 </body>
 
